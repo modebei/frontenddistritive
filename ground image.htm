@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/images/search?q=Background%20image%20Style&FORM=IQFRBA&id=A879BDF02B398B4C61DF7E02D23C40964933373E";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=6b37fe93c2dd6051JmltdHM9MTY3Nzk3NDQwMCZpZ3VpZD0yNjRhNzhkMi1mMjQ4LTY2ZmUtMjE5Zi02YTFiZjM1NTY3ZDAmaW5zaWQ9NTQ4NQ&ptn=3&hsh=3&fclid=264a78d2-f248-66fe-219f-6a1bf35567d0&u=a1L2ltYWdlcy9zZWFyY2g_cT1CYWNrZ3JvdW5kJTIwaW1hZ2UlMjBTdHlsZSZGT1JNPUlRRlJCQSZpZD1BODc5QkRGMDJCMzk4QjRDNjFERjdFMDJEMjNDNDA5NjQ5MzMzNzNF&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
